@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('invent/', index),
     url(r'^$', views.index,name='home'),
-    url(r'^about/$', views.about,name='home'),
+    url(r'^about/$', views.about,name='about'),
+    url(r'^get_name/', views.get_name,name='get name'),
     
 ]
