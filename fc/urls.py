@@ -15,10 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls import url
+from invent import views
 
 from invent.views import index
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('invent/', index)
+    path('invent/', index),
+    url(r'^$', views.index,name='home'),
+    url(r'^about/$', views.about,name='home'),
     
 ]
