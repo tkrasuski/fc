@@ -1,9 +1,11 @@
 {% extends "base.html" %}
 {% block title %}Invent{% endblock %}
 {% block content %}
-<form action="{{handler}}" method="post">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Submit" />
-</form>
+<div class="col-sm-4" style="background-color: #eee;">
+    <form action="{{handler}}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Submit" />
+    </form>
+</div>
 {% endblock%}
