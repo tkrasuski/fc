@@ -6,7 +6,7 @@ from .forms import InventoryPart
  
 
 def index(request):
-    return HttpResponse('hello from invent')
+    return render(request, 'dashboard.html')
 
 def about(request):
     return render(request, 'test.html',{'nazwa':'dupa'})
