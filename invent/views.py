@@ -28,9 +28,9 @@ def inventory_parts_table(request):
     tbl = InventoryPartsTable(InventoryParts.objects.all())
     RequestConfig(request).configure(tbl)
     return render(request, 'table.html', {'tbl':tbl})
-def inventory_parts_form(request, id):
+def inventory_parts_form(request, id=0):
     part = InventoryParts.objects.get(id=id)
     print (part.part_no)
-    form = InventoryPart(initial=dict(part_no=part.part_no, description=part.description, note=part.note))
+    form = InventoryPart(initial=dict(part_no=part.part_no, description=part.description, notes=part.note,unit=part.unit, active=part.active))
     
     return render(request,'form.html',{'form':form})
