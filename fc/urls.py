@@ -25,5 +25,6 @@ urlpatterns = [
     url(r'^$', views.index,name='home'),
     url(r'^about/$', views.about,name='about'),
     url(r'^get_name/', views.get_name,name='get name'),
+    url(r'^parts/',views.inventory_parts_table),
     
 ]
