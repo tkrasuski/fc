@@ -2,26 +2,42 @@
 {% block title %}Invent - dashboard{% endblock %}
 {% block content %}
     <div class="row">
-        <div class="col-sm-3 col-md-6 col-lg-4">
-            <a href="/parts/"> Inventory parts</a>
+        <div class="col-sm-4">
+            <div class="dropdown show">
+                    <a href="#" class="btn btn-secondary dropdown-toggle" role="button" id="partsbtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Inventory parts</a>
+                <div class="dropdown-menu" aria-labelledby="partsbtn">
+                    <a href="/parts/" class="dropdown-item"> Inventory parts overview</a>
+                    <a href="/parts/instock/" class="dropdown-item"> Parts in stock</a>
+                            
+                </div>
+            </div>
         </div>
-    </div>
+        <div class="col-sm-4 ">
+            <div class="dropdown show">
+                 <a href="#" class="btn btn-secondary dropdown-toggle" role="button" id="transactionssbtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Inventory transaction</a>
+                <div class="dropdown-menu" aria-labelledby="transactionssbtn">
+                    <a href="#" class="dropdown-item">Receive part</a>
+                    <a href="#" class="dropdown-item">Move part</a>
+                    <a href="#" class="dropdown-item">Deliver part</a>
+                </div>
+            </div>
+        </div>
+    <!--/div-->
 
-    <div class="row">
-        <div class="col-sm-3 col-md-6 col-lg-4">
-             <a href="/parts/instock/"> Parts in stock</a>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-3 col-md-6 col-lg-4">
-             <a href="/parts/instock/">Inventory transaction</a>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-3 col-md-6 col-lg-4">
-             <a href="/orders/">Customer orders</a>
+    <!--div class="row"-->
+        <div class="col-sm-4 ">
+            <div class="dropdown">
+                 <button href="#" class="btn btn-secondary dropdown-toggle" type="button" id="ordersbtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Customer orders
+                </button>
+                <div class="dropdown-menu" aria-labelledby="ordersbtn">
+                
+                    <button type="button" href="#" class="dropdown-item">Orders overview</button>
+                    <button type="button" href="#" class="dropdown-item">Create order</button>
+                </div>
+            </div>
         </div>
 
     </div>
+    
 {% endblock %}
