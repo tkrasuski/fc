@@ -27,5 +27,6 @@ urlpatterns = [
     url(r'^get_name/', views.get_name,name='get name'),
     url(r'^parts/$',views.inventory_parts_table),
     re_path(r'^parts/details/(?P<id>\d+)/$',views.inventory_parts_form),
+    re_path(r'^parts/details/$',views.inventory_parts_form),
     
 ]

@@ -52,3 +52,27 @@ class InventHistory(models.Model):
     stamp = models.DateTimeField(auto_now_add=True, blank=True)
     def __str__(self):
         return self.transaction_code
+class Customer(models.Model):
+    name = models.CharField(max_length=100, null=False)
+    vat_no = models.CharField(max_length=30, null=True)
+    address1 = models.TextField()
+    address2 = models.TextField()
+    phone1 = models.CharField(max_length=10, null=True, blank=True)
+    phone2 = models.CharField(max_length=30, null=True, blank=True)
+    email = models.EmailField()
+    notes = models.TextField()
+    stamp = models.DateTimeField(auto_now_add=True, blank=True)
+    def __str__(self):
+        return self.name
+class DeliveryAddress(models.Model):
+    customer = models.ForeignKey('Customer', on_delete=models.CASCADE)
+    description = models.CharField(max_length=100, null=False)
+    address = models.TextField()
+    phone = models.CharField(max_length=30,null=True, blank=True)
+    email = models.EmailField(blank=True)
+    stamp = models.DateTimeField(auto_now_add=True, blank=True)
+    def __str__(self):
+        return self.customer.name + ' ' + self.description
+class CustomerOrderHead(models.Model):
+    pass
+    #customer = models.ForeignKey('Customer', on_delete=models.CASCADE)

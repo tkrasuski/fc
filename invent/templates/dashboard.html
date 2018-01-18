@@ -1,43 +1,48 @@
 {% extends "base.html" %}
 {% block title %}Invent - dashboard{% endblock %}
 {% block content %}
-    <div class="row">
-        <div class="col-sm-4">
-            <div class="dropdown show">
-                    <a href="#" class="btn btn-secondary dropdown-toggle" role="button" id="partsbtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Inventory parts</a>
-                <div class="dropdown-menu" aria-labelledby="partsbtn">
-                    <a href="/parts/" class="dropdown-item"> Inventory parts overview</a>
-                    <a href="/parts/instock/" class="dropdown-item"> Parts in stock</a>
-                            
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-4 ">
-            <div class="dropdown show">
-                 <a href="#" class="btn btn-secondary dropdown-toggle" role="button" id="transactionssbtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Inventory transaction</a>
-                <div class="dropdown-menu" aria-labelledby="transactionssbtn">
-                    <a href="#" class="dropdown-item">Receive part</a>
-                    <a href="#" class="dropdown-item">Move part</a>
-                    <a href="#" class="dropdown-item">Deliver part</a>
-                </div>
-            </div>
-        </div>
-    <!--/div-->
-
-    <!--div class="row"-->
-        <div class="col-sm-4 ">
-            <div class="dropdown">
-                 <button href="#" class="btn btn-secondary dropdown-toggle" type="button" id="ordersbtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Customer orders
-                </button>
-                <div class="dropdown-menu" aria-labelledby="ordersbtn">
-                
-                    <button type="button" href="#" class="dropdown-item">Orders overview</button>
-                    <button type="button" href="#" class="dropdown-item">Create order</button>
-                </div>
-            </div>
-        </div>
-
+<div class="row">
+    <div class="col-sm-2">
+        <h6>Inventory parts</h6>
+        <p>
+            <ul class="list-unstyled">
+                <li> <a href="/parts/" class="text-sm-left"> Inventory parts overview</a></li>
+                <li> <a href="/parts/details/" class="text-sm-left"> Create inventory part</a></li>
+                <li><a href="/parts/instock/" class="text-sm-left"> Parts in stock</a></li>
+            </ul>
+        </p>
     </div>
-    
+    <div class="col-sm-2">
+        <h6>Inventory locations</h6>
+        <p>
+            <ul class="list-unstyled">
+                <li>Locations overview</li>
+                <li>Stock by locations</li>
+            </ul>
+        </p>
+    </div>
+    <div class="col-sm-2">
+        <h6>Inventory transactions</h6>
+        <p>
+            <ul class="list-unstyled">
+                <li>Arrival</li>
+                <li>Issue</li>
+                <li>Move part</li>
+                <li>Scrap part</li>
+            </ul>
+        </p>
+    </div>
+    <div class="col-sm-2">
+        <h6>Customer orders</h6>
+        <p>
+            <ul class="list-unstyled">
+                <li>Customer overview</li>
+                <li>Create customer</li>
+                <li>Orders overview</li>
+                <li>Create order</li>
+            </ul>
+        </p>
+    </div>    
+</div>
+
 {% endblock %}

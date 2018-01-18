@@ -8,3 +8,5 @@ class InventoryPart(forms.Form):
     notes = forms.CharField(required=False,widget=forms.Textarea(attrs={'class':'form-control form-control-sm','placeholder':'Notes'}))
     unit = forms.CharField(required=True, widget=forms.Select(choices=Units.objects.all().values_list('id','code'),attrs={'class':'form-control form-control-sm','placeholder':'Unit'}))
     active = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'form-control form-control-sm','placeholder':'Active'}))
+class CustomerForm(forms.Form):
+    name = Forms.CharField(widget=forms.TextInput(attrs={'class':'form-control form-control-sm','placeholder':'Name'}))
