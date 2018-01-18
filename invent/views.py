@@ -61,7 +61,7 @@ def customer_overview_table(request):
 def customer_form(request, id=0):
     if id != 0:
         customer = Customer.objects.get(id=id)
-        form = CustomerForm(initial=dict(name=customer.name, address1=customer.address1))
+        form = CustomerForm(initial=dict(name=customer.name, vat_no=customer.vat_no, address1=customer.address1, address2=customer.address2, phone1=customer.phone1, phone2=customer.phone2, email=customer.email, notes=customer.notes))
     else:
         form=CustomerForm()
     return render(request,'form.html',{'form':form})
