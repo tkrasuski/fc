@@ -2,7 +2,15 @@
 {% block title %}Invent{% endblock %}
 {% load render_table from django_tables2 %}
 {% block content %}
-<div class="col-sm-4" style="background-color: #eee;">
-    {% render_table tbl %}
+<div class="row">
+    <div class="col-sm-2">
+        {{site_name}}
+    </div>
+    <br></div>
+<div class="row">
+    <div class="col-sm-1"><br></div>
+    <div class="col-sm-8" style="background-color: #eee;">
+        {% render_table tbl %}
+    </div>
 </div>
 {% endblock%}

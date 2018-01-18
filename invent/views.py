@@ -2,9 +2,9 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django_tables2 import RequestConfig
 from django.views.generic import TemplateView # Import TemplateView
-from .models import InventoryParts, Units
-from .forms import InventoryPart
-from .tables import InventoryPartsTable
+from .models import InventoryParts, Units, Customer
+from .forms import InventoryPart, CustomerForm
+from .tables import InventoryPartsTable, CustomerOverviewTable
  
 
 def index(request):
@@ -27,7 +27,7 @@ def get_name(request):
 def inventory_parts_table(request):
     tbl = InventoryPartsTable(InventoryParts.objects.all())
     RequestConfig(request).configure(tbl)
-    return render(request, 'table.html', {'tbl':tbl})
+    return render(request, 'table.html', {'tbl':tbl,'site_name':'Inventory parts overview'})
 def inventory_parts_form(request, id=0):
     if request.method=='POST':
         form = InventoryPart(request.POST)
@@ -52,4 +52,16 @@ def inventory_parts_form(request, id=0):
     else:
         form = InventoryPart()
     
+    return render(request,'form.html',{'form':form})
+def customer_overview_table(request):
+    tbl = CustomerOverviewTable(Customer.objects.all())
+    RequestConfig(request).configure(tbl)
+    return render(request, 'table.html', {'tbl':tbl, 'site_name':'Customer overview'})
+    
+def customer_form(request, id=0):
+    if id != 0:
+        customer = Customer.objects.get(id=id)
+        form = CustomerForm(initial=dict(name=customer.name, address1=customer.address1))
+    else:
+        form=CustomerForm()
     return render(request,'form.html',{'form':form})

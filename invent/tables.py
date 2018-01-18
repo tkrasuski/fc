@@ -1,5 +1,5 @@
 import django_tables2 as tables
-from .models import InventoryParts
+from .models import InventoryParts, Customer
 from django.utils.safestring import mark_safe, SafeText
 
 class InventoryPartsTable(tables.Table):
@@ -24,3 +24,12 @@ class InventoryLocations(tables.Table):
     pass
 class InventoryHistory(tables.Table):
     pass
+
+class CustomerOverviewTable(tables.Table):
+    def render_name(self, value, record):
+        url = '/customer/details/'+str(record.id)+'/'
+        return mark_safe('<a href="%s">%s</a>' % (url, record.name))
+    class Meta:
+        model = Customer
+        template = 'django_tables2/bootstrap.html'
+        exclude = ('id', 'note')
