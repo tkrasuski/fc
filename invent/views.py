@@ -2,10 +2,10 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django_tables2 import RequestConfig
 from django.views.generic import TemplateView # Import TemplateView
-from .models import InventoryParts, Units, Customer
-from .forms import InventoryPart, CustomerForm
-from .tables import InventoryPartsTable, CustomerOverviewTable
- 
+from .models import InventoryParts, Units, Customer, DeliveryAddress
+from .forms import InventoryPart, CustomerForm, DeliveryAddressForm
+from .tables import InventoryPartsTable, CustomerOverviewTable, CustomerDeliveryAddressesTable
+from .inventoryTransactions import InventTransaction as IT
 
 def index(request):
     return render(request, 'dashboard.html')
@@ -65,3 +65,37 @@ def customer_form(request, id=0):
     else:
         form=CustomerForm()
     return render(request,'form.html',{'form':form})
+def customer_delivery_addresses_table(request):
+    tbl = CustomerDeliveryAddressesTable(DeliveryAddress.objects.all())
+    RequestConfig(request).configure(tbl)
+    return render(request, 'table.html', {'tbl':tbl, 'site_name':'Delivery address overview'})
+def customer_delivery_addresses_form(request, id=0):
+    if request.method == 'POST':
+        form = DeliveryAddressForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            if id != 0:
+                obj = DeliveryAddress.objects.get(pk=id)
+            else:
+                obj = DeliveryAddress()
+            obj.customer = Customer.objects.get(pk=data['customer'])
+            obj.description = data['description']
+            obj.address = data['address']
+            obj.phone = data['phone']
+            obj.email = data['email']
+            obj.save()
+    if id != 0:
+        address = DeliveryAddress.objects.get(id=id)
+        form = DeliveryAddressForm(initial=dict(customer=address.customer.id, description=address.description, address=address.address, phone=address.phone, email=address.email))
+    else:
+        form = DeliveryAddressForm()
+    return render(request,'form.html',{'form':form, 'site_name':'Customer delivery address'})
+
+def test_test(request):
+    it = IT()
+    it.part_no = 'test_002'
+    it.qty = 1
+    it.source_location = 'default'
+    it.dest_location = 'testo'
+    it.move()
+    return render(request, 'test.html',{'nazwa':it.t})

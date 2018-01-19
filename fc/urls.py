@@ -31,5 +31,9 @@ urlpatterns = [
     re_path(r'^customer/details/(?P<id>\d+)/$',views.customer_form),
     re_path(r'^customer/details/$',views.customer_form),
     url(r'^customer/$', views.customer_overview_table),
+    url(r'^customer/addresses/$', views.customer_delivery_addresses_table),
+    re_path(r'^customer/address_details/(?P<id>\d+)/$',views.customer_delivery_addresses_form),
+    re_path(r'^customer/address_details/$',views.customer_delivery_addresses_form),
+    re_path(r'^test/$', views.test_test),
     
 ]

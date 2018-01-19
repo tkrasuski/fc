@@ -1,5 +1,5 @@
 import django_tables2 as tables
-from .models import InventoryParts, Customer
+from .models import InventoryParts, Customer, DeliveryAddress
 from django.utils.safestring import mark_safe, SafeText
 
 class InventoryPartsTable(tables.Table):
@@ -33,3 +33,12 @@ class CustomerOverviewTable(tables.Table):
         model = Customer
         template = 'django_tables2/bootstrap.html'
         exclude = ('id', 'note')
+
+class CustomerDeliveryAddressesTable(tables.Table):
+    def render_customer(self, value, record):
+        url = '/customer/address_details/'+str(record.id)+'/'
+        return mark_safe('<a href="%s">%s</a>' % (url, record.customer))
+    class Meta:
+        model = DeliveryAddress
+        template = 'django_tables2/bootstrap.html'
+        exclude = ('id')
