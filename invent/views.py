@@ -96,6 +96,6 @@ def test_test(request):
     it.part_no = 'test_002'
     it.qty = 1
     it.source_location = 'default'
-    it.dest_location = 'testo'
+    it.dest_location = 'test'
     it.move()
-    return render(request, 'test.html',{'nazwa':it.t})
+    return render(request, 'test.html',{'result':it.t})

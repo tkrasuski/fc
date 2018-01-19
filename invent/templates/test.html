@@ -1,24 +1,15 @@
 {% extends "base.html" %}
-{% block title %}Invent{% endblock %}
-{% block content %}
+{% block title %}Invent test site{% endblock %}
+{% block content %}     
+<br>
 <div class="row">
-        <div class="col-sm-4">
-          <h3>Column 1</h3>
-          <p>Lorem ipsum dolor..</p>
-          <p>Ut enim ad..</p>
-        </div>
-        <div class="col-sm-4">
-          <h3>Column 2</h3>
-          <p>Lorem ipsum dolor..</p>
-          <p>Ut enim ad..</p>
-        </div>
-        <div class="col-sm-4">
-          <h3>Column 3</h3> 
-          <p>Lorem ipsum dolor..</p>
-          <p>Ut enim ad..</p>
-        </div>
-      </div>
+  <div class="col-sm-1"></div>
+  <div class="col-sm-4" style="background-color: #eee;">
+    <h6>test result</h6>
+  </div>
+  <div class="col-sm-4" style="background-color: #eee;">
+      {{ result }}
+  </div>
+</div> 
 
-      
-{{ nazwa }}
 {% endblock%}
