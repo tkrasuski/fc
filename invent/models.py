@@ -66,6 +66,8 @@ class PartsInStock(models.Model):
     value = models.FloatField(null=True)
     batch = models.CharField(max_length=30,null=True, blank=True)
     stamp = models.DateTimeField(auto_now_add=True,null=True, blank=True)
+    def __str__(self):
+        return self.part_no.part_no+'/'+self.location.location_code
 class Customer(models.Model):
     name = models.CharField(max_length=100, null=False)
     vat_no = models.CharField(max_length=30, null=True)
