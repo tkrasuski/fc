@@ -21,7 +21,25 @@ class InventTransaction():
                 self.error = 'too few parts to move'
             else:
                 # chceck whether destination location exists
-                dlocation = InventLocations.objects.filter(location_code=self.dest_location).count()
+                dlocation = InventLocations.objects.get(location_code=self.dest_location)
+
+                # decrease source
+                aval.quantity=aval.quantity-self.qty
+                aval.save()
+                # put here insert to trans hist
+                # increase dest or insert record
+                daval, created = PartsInStock.objects.update_or_create(part_no = part, location=dlocation)
+                # put here insert to trans hist
+                if created:
+                    daval.part_no = part
+                    daval.location=dlocation
+                    daval.quantity = self.qty
+                    daval.save()
+                else:
+                    daval.location = dlocation
+                    daval.quantity = daval.quantity + self.qty
+                    daval.save()
+                    print (daval.location)
                 self.t = dlocation
             
         else:
