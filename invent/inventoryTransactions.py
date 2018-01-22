@@ -1,4 +1,4 @@
-from .models import InventoryParts, InventLocations, InventTransactions, InventHistory, PartsInStock
+from .models import InventoryParts, InventLocations, InventTransactions, InventHistory, PartsInStock, InventTransactions
 
 
 class InventTransaction():
@@ -7,7 +7,18 @@ class InventTransaction():
     dest_location = None
     qty = None
     error = None
+    transaction_code = None
+    value = None
     t=None
+    def make_history(self):
+        hist = InventHistory()
+        hist.part_no = InventoryParts.objects.get(part_no=self.part_no)
+        hist.quantity = self.qty
+        hist.source_location = self.source_location
+        hist.destination_location = self.dest_location
+        hist.transaction_code = InventTransactions.objects.get(transaction_code= self.transaction_code)
+        hist.value = self.value
+        hist.save()
     def move(self):
         self.error = None
         if self.part_no and self.source_location and self.dest_location and self.qty:
@@ -27,9 +38,13 @@ class InventTransaction():
                 aval.quantity=aval.quantity-self.qty
                 aval.save()
                 # put here insert to trans hist
+                self.transaction_code = 'MM-'
+                self.make_history()
                 # increase dest or insert record
                 daval, created = PartsInStock.objects.update_or_create(part_no = part, location=dlocation)
                 # put here insert to trans hist
+                self.transaction_code = 'MM+'
+                self.make_history()
                 if created:
                     daval.part_no = part
                     daval.location=dlocation
