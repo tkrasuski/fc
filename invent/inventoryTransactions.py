@@ -19,6 +19,13 @@ class InventTransaction():
         hist.transaction_code = InventTransactions.objects.get(transaction_code= self.transaction_code)
         hist.value = self.value
         hist.save()
+    def receive(self):
+        hist - InventHistory()
+        if self.dest_location and self.qty, and self.part_no and self.value:
+            part = InventoryParts.objects.get(part_no=self.part_no)
+            dlocation = InventLocations.objects.get(location_code=self.dest_location)
+            stock = PartsInStock.objects.update_or_create()
+        
     def move(self):
         self.error = None
         if self.part_no and self.source_location and self.dest_location and self.qty:
